@@ -35,9 +35,9 @@ public abstract class Basetest {
     public void navigate(){
         driver.get("https://www.saucedemo.com/");
     }
-//    @AfterClass(alwaysRun = true)
-//    public void tearDown(){
-//        driver.quit();
-//    }
+    @AfterClass(alwaysRun = true)
+    public void tearDown(){
+        driver.quit();
+    }
 
 }
