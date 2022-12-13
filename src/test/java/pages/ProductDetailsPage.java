@@ -13,13 +13,13 @@ public class ProductDetailsPage extends BasePage{
     public void clickDetailsAddToCartButton(){
         driver.findElement(DETAILS_ADD_TO_CART_BUTTON).click();
     }
-    public String getDetailsName(String detailsName){
+    public String getDetailsName(){
        return driver.findElement(DETAILS_NAME).getText();
     }
-    public String getDetailsPrice(String detailsPrice){
+    public String getDetailsPrice(){
         return driver.findElement(DETAILS_PRICE).getText();
     }
-    public String getDetailsDescription(String detailsDescriptiont){
+    public String getDetailsDescription(){
         return driver.findElement(DETAILS_DESCRIPTION).getText();
     }
 
