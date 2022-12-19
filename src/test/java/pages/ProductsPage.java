@@ -8,11 +8,13 @@ import java.util.NoSuchElementException;
 public class ProductsPage extends BasePage{
     private final static By SHOPPING_CART_BUTTON = By.cssSelector(".shopping_cart_link");
     private final static String ITEM_CONTAINER_LOCATOR = "//div[@class='inventory_item_name' and text()='%s']/ancestor::div[@class='inventory_item']";
-    private final static By ADD_TO_CART_BUTTON = By.xpath("//button[text()='Add to cart']");
-    private final static By ITEM_PRICE = By.xpath("//*[@class='inventory_item_price']");
-    private final static By ITEM_DESCRIPTION = By.xpath("//*[@class='inventory_item_desc']");
-    private final static By ITEM_NAME = By.xpath("//*[@class='inventory_item_name']");
-    private final static By BACK_TO_PRODUCTS = By.xpath("//*[@class='btn btn_secondary back btn_large inventory_details_back_button']");
+    private final static By ADD_TO_CART_BUTTON = By.xpath(".//button[text()='Add to cart']");
+    private final static By ITEM_PRICE = By.xpath(".//*[@class='inventory_item_price']");
+    private final static By ITEM_DESCRIPTION = By.xpath(".//*[@class='inventory_item_desc']");
+    private final static By ITEM_NAME = By.xpath(".//*[@class='inventory_item_name']");
+    private final static By BACK_TO_PRODUCTS = By.xpath(".//*[@class='btn btn_secondary back btn_large inventory_details_back_button']");
+    private By menu = By.cssSelector("#react-burger-menu-btn");
+    private By logout = By.cssSelector("#logout_sidebar_link");
     public ProductsPage(WebDriver driver){
         super(driver);
     }
@@ -51,8 +53,11 @@ public class ProductsPage extends BasePage{
     public void openItem (String itemName){
         driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_NAME).click();
     }
+    public void clickMenuButton (){driver.findElement(menu).click();}
+    public void clickLogout(){driver.findElement(logout).click();}
     private By getItemContainerByName(String itemName){
         return By.xpath(String.format(ITEM_CONTAINER_LOCATOR,itemName));
     }
+
 
 }
