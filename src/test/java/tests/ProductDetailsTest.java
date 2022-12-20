@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ProductDetailsTest extends Basetest{
 
-    @Test
+    @Test(description = "test details",groups = "smoke")
     public void detailsTest(){
         String expectedDetailsName = "Sauce Labs Backpack";
         String expectedDetailsPrice = "$29.99";

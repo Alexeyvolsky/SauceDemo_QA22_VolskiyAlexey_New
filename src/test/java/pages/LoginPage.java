@@ -31,4 +31,12 @@ public class LoginPage extends BasePage{
         }
         return true;
     }
+    public boolean isLoginButtonPresent(){
+        try {
+            driver.findElement(loginButton);
+        }catch (NoSuchElementException ex){
+            return false;
+        }
+        return true;
+    }
 }
