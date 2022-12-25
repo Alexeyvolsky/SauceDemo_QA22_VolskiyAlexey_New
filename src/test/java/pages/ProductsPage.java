@@ -2,8 +2,12 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class ProductsPage extends BasePage{
     private final static By SHOPPING_CART_BUTTON = By.cssSelector(".shopping_cart_link");
@@ -12,6 +16,7 @@ public class ProductsPage extends BasePage{
     private final static By ITEM_PRICE = By.xpath(".//*[@class='inventory_item_price']");
     private final static By ITEM_DESCRIPTION = By.xpath(".//*[@class='inventory_item_desc']");
     private final static By ITEM_NAME = By.xpath(".//*[@class='inventory_item_name']");
+    private final static By DROPDOWN = By.cssSelector(".product_sort_container");
     private final static By BACK_TO_PRODUCTS = By.xpath(".//*[@class='btn btn_secondary back btn_large inventory_details_back_button']");
     private By menu = By.cssSelector("#react-burger-menu-btn");
     private By logout = By.cssSelector("#logout_sidebar_link");
@@ -57,6 +62,20 @@ public class ProductsPage extends BasePage{
     public void clickLogout(){driver.findElement(logout).click();}
     private By getItemContainerByName(String itemName){
         return By.xpath(String.format(ITEM_CONTAINER_LOCATOR,itemName));
+    }
+    public void clickDropdownButton(){driver.findElement(DROPDOWN).click();}
+    public Select allOptions(){
+        Select select = new Select(driver.findElement(By.cssSelector(".product_sort_container")));
+        return select;
+    }
+    public void clickSelectAtoZ(){allOptions().selectByVisibleText("Name (A to Z)");}
+    public void clickSelectZtoA(){allOptions().selectByVisibleText("Name (Z to A)");}
+    public void clickSelectLowToHigh(){allOptions().selectByVisibleText("Price (low to high)");}
+    public void clickSelectHighToLow(){allOptions().selectByVisibleText("Price (high to low)");}
+    public List<String> getSortListItemName(){
+        List<WebElement> listItemName = driver.findElements(ITEM_NAME);
+        List<String> allItemNameList = listItemName.stream().map(WebElement::getText).collect(Collectors.toList());
+        return allItemNameList;
     }
 
 

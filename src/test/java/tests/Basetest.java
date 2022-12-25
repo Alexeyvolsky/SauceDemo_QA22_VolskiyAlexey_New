@@ -3,11 +3,9 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestListener;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.util.concurrent.TimeUnit;
@@ -21,10 +19,19 @@ public abstract class Basetest {
     protected CheckoutOverwiewPage checkoutOverwiewPage;
     protected ProductDetailsPage productDetailsPage;
     protected CheckoutCompletePage checkoutCompletePage;
+    @Parameters({"browser"})
     @BeforeClass
-    public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+    public void setUp(@Optional("chrome") String browserName) throws Exception{
+        System.out.println(browserName);
+        if (browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }else if (browserName.equals("edge")){
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }else {
+            throw new Exception("Incorrect browser name");
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
