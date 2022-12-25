@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="2">
+    <test name="Regression tests on chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="tests.CheckoutTest">
+                <methods>
+                    <include name="negativeCheckoutTest"/>
+                </methods>
+            </class>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="negativeLoginTest"/>
+                </methods>
+            </class>
+            <class name="tests.ProductsTest"/>
+        </classes>
+    </test>
+    <test name="Regression tests on Edge">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="tests.CheckoutTest">
+                <methods>
+                    <include name="negativeCheckoutTest"/>
+                </methods>
+            </class>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="negativeLoginTest"/>
+                </methods>
+            </class>
+            <class name="tests.ProductsTest"/>
+        </classes>
+    </test>
+</suite>
