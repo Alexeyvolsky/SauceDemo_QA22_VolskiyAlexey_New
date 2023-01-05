@@ -1,11 +1,16 @@
 package tests;
 
+import io.qameta.allure.Description;
+import org.apache.hc.core5.annotation.Contract;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CheckoutPage;
 
+import java.util.NoSuchElementException;
+
 public class CheckoutTest extends Basetest{
     @Test(description = "pozitive Checkout Test",groups = "smoke")
+    @Description(value = "Тест проверяет покупку при вводе допустимых значений")
     public void pozitiveCheckoutTest(){
         String expectedName = "Sauce Labs Bike Light";
         String expectedPrice = "$9.99";
@@ -27,6 +32,7 @@ public class CheckoutTest extends Basetest{
         checkoutCompletePage.isCheckoutCompletePresent();
     }
     @Test(description = "negativeCheckoutTest",groups = "regression")
+    @Description(value = "Тест проверяет не возможность покупки при вводе недопустимых значений")
     public void negativeCheckoutTest(){
         String expectedName = "Sauce Labs Bike Light";
         String expectedPrice = "$9.99";

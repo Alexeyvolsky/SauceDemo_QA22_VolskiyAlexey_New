@@ -1,11 +1,13 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProductDetailsTest extends Basetest{
 
     @Test(description = "test details",groups = "smoke")
+    @Description(value = "Тест проверяет соответствие всех параметров выбранного товара с параметрами на странице")
     public void detailsTest(){
         String expectedDetailsName = "Sauce Labs Backpack";
         String expectedDetailsPrice = "$29.99";

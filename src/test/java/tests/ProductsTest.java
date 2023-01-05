@@ -1,6 +1,7 @@
 package tests;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ProductsTest extends Basetest{
 
     @Test(dataProvider = "productTestData",description = "products test",groups = "regression")
+    @Description(value = "Тест проверяет работоспособность перехода на страницу каждого из товаров")
     public void productsTest(String testItemName,String expectedItemPrice, String expectedItemDescription){
         loginPage.setUsername("standard_user");
         loginPage.setPassword("secret_sauce");
@@ -38,7 +40,8 @@ public class ProductsTest extends Basetest{
                         " up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton."},
         };
     }
-    @Test(description = "regression")
+    @Test(description = "sortTest",groups = "regression")
+    @Description(value = "Тест проверяет правильность сортировки")
     public void sortTest(){
         String[]expectedAtoZSortingItemList = {"Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt",
                 "Sauce Labs Fleece Jacket", "Sauce Labs Onesie", "Test.allTheThings() T-Shirt (Red)"};
