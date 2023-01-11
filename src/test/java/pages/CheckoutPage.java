@@ -17,22 +17,27 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Entering a First Name")
     public void setFirstNameInput(String Firstname) {
         driver.findElement(FIRST_NAME_INPUT).sendKeys(Firstname);
     }
+
     @Step("Entering a Last Name")
     public void setLastNameInput(String Lastname) {
         driver.findElement(LAST_NAME_INPUT).sendKeys(Lastname);
     }
+
     @Step("Entering a code")
     public void setPostalCodeInput(String Postalcode) {
         driver.findElement(POSTAL_CODE_INPUT).sendKeys(Postalcode);
     }
+
     @Step("Go to overview page")
     public void clickContinueButton() {
         driver.findElement(continueButton).click();
     }
+
     @Step("Checking presence on the overview page")
     public boolean isErrorMessagePresent() {
         try {

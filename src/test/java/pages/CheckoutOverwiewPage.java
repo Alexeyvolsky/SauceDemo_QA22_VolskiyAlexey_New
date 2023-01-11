@@ -28,46 +28,48 @@ public class CheckoutOverwiewPage extends BasePage {
         }
         return true;
     }
+
     @Step("Go to finish page")
     public void clickFinishButton() {
         driver.findElement(finishButton).click();
     }
+
     @Step("Get details name")
     public String getDetailsName() {
         return driver.findElement(DETAILS_NAME).getText();
     }
+
     @Step("Get details price")
     public String getDetailsPrice() {
         return driver.findElement(DETAILS_PRICE).getText();
     }
+
     @Step("Get details description")
     public String getDetailsDescription() {
         return driver.findElement(DETAILS_DESCRIPTION).getText();
     }
-    @Step("Cost value")
+
+    @Step("Get cost value")
     public double itemSubtotal() {
         String subtotalFull = driver.findElement(SUMMARY_SUBTOTAL_LABEL).getText();
         String subtotalString = subtotalFull.substring(13);
         double subtotal = Double.parseDouble(subtotalString);
         return subtotal;
     }
-    @Step("Discount value")
+
+    @Step("Get Discount value")
     public double itemTax() {
         String taxFull = driver.findElement(SUMMARY_TAX_LABEL).getText();
         String taxString = taxFull.substring(6);
         double tax = Double.parseDouble(taxString);
         return tax;
     }
-    @Step("actual value")
+
+    @Step("Get actual value")
     public double actualItemTotal() {
         String itemTotalFull = driver.findElement(SUMMARY_TOTAL_LABEL).getText();
         String itemTotalString = itemTotalFull.substring(8);
         double actualTotal = Double.parseDouble(itemTotalString);
         return actualTotal;
-    }
-    @Step("expected value")
-    public double expectedItemTotal() {
-        double expectedTotal = itemSubtotal() + itemTax();
-        return expectedTotal;
     }
 }

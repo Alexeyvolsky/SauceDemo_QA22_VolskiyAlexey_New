@@ -15,6 +15,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Login")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
@@ -29,6 +30,7 @@ public class LoginPage extends BasePage {
     public void setPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
+
     @Step("Data Validation")
     public boolean isErrorMessageContainerPresent() {
         try {

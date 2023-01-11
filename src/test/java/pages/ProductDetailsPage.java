@@ -19,10 +19,12 @@ public class ProductDetailsPage extends BasePage {
     public String getDetailsName() {
         return driver.findElement(DETAILS_NAME).getText();
     }
+
     @Step("Get details price")
     public String getDetailsPrice() {
         return driver.findElement(DETAILS_PRICE).getText();
     }
+
     @Step("Get details description")
     public String getDetailsDescription() {
         return driver.findElement(DETAILS_DESCRIPTION).getText();
