@@ -12,8 +12,6 @@ public class CheckoutOverwiewPage extends BasePage {
     private final static By DETAILS_NAME = By.xpath("//*[@class='inventory_item_name']");
     private final static By DETAILS_PRICE = By.xpath("//*[@class='inventory_item_price']");
     private final static By DETAILS_DESCRIPTION = By.xpath("//*[@class='inventory_item_desc']");
-    private final static By SUMMARY_SUBTOTAL_LABEL = By.xpath("//*[@class ='summary_subtotal_label']");
-    private final static By SUMMARY_TAX_LABEL = By.xpath("//*[@class ='summary_tax_label']");
     private final static By SUMMARY_TOTAL_LABEL = By.xpath("//*[@class ='summary_total_label']");
 
     public CheckoutOverwiewPage(WebDriver driver) {
@@ -49,24 +47,8 @@ public class CheckoutOverwiewPage extends BasePage {
         return driver.findElement(DETAILS_DESCRIPTION).getText();
     }
 
-    @Step("Get cost value")
-    public double itemSubtotal() {
-        String subtotalFull = driver.findElement(SUMMARY_SUBTOTAL_LABEL).getText();
-        String subtotalString = subtotalFull.substring(13);
-        double subtotal = Double.parseDouble(subtotalString);
-        return subtotal;
-    }
-
-    @Step("Get Discount value")
-    public double itemTax() {
-        String taxFull = driver.findElement(SUMMARY_TAX_LABEL).getText();
-        String taxString = taxFull.substring(6);
-        double tax = Double.parseDouble(taxString);
-        return tax;
-    }
-
-    @Step("Get actual value")
-    public double actualItemTotal() {
+    @Step("Actual value")
+    public double getActualItemTotal() {
         String itemTotalFull = driver.findElement(SUMMARY_TOTAL_LABEL).getText();
         String itemTotalString = itemTotalFull.substring(8);
         double actualTotal = Double.parseDouble(itemTotalString);

@@ -9,6 +9,7 @@ public class TotalPriceTest extends Basetest {
     @Test(groups = "smoke", description = "totalPriceTest")
     @Description(value = "Тест проверяет правильность подсчета итоговой стоимости")
     public void totalPriceTest() {
+        double expectedItemTotal = 43.18;
         loginPage.setUsername("standard_user");
         loginPage.setPassword("secret_sauce");
         loginPage.clickLoginButton();
@@ -20,7 +21,6 @@ public class TotalPriceTest extends Basetest {
         checkoutPage.setLastNameInput("Volskiy");
         checkoutPage.setPostalCodeInput("77887");
         checkoutPage.clickContinueButton();
-        double expectedItemTotal = checkoutOverwiewPage.itemSubtotal() + checkoutOverwiewPage.itemTax();
-        Assert.assertEquals(checkoutOverwiewPage.actualItemTotal(), expectedItemTotal);
+        Assert.assertEquals(checkoutOverwiewPage.getActualItemTotal(), expectedItemTotal);
     }
 }

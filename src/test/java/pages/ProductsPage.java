@@ -26,7 +26,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public List<WebElement> getActualNamesElements() {
+    private List<WebElement> getActualNamesElements() {
         return driver.findElements(By.xpath("//div[@class='inventory_item_name']"));
     }
 
