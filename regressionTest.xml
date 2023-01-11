@@ -14,6 +14,7 @@
                     <include name="negativeLoginTest"/>
                 </methods>
             </class>
+            <class name="tests.RemoveButtonTest"/>
             <class name="tests.ProductsTest"/>
         </classes>
     </test>
@@ -30,6 +31,7 @@
                     <include name="negativeLoginTest"/>
                 </methods>
             </class>
+            <class name="tests.RemoveButtonTest"/>
             <class name="tests.ProductsTest"/>
         </classes>
     </test>

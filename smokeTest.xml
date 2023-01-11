@@ -15,6 +15,7 @@
                         <include name="logoutTest"/>
                     </methods>
             </class>
+            <class name="tests.TotalPriceTest"/>
             <class name="tests.ProductDetailsTest"/>
         </classes>
     </test>
@@ -32,6 +33,7 @@
                     <include name="logoutTest"/>
                 </methods>
             </class>
+            <class name="tests.TotalPriceTest"/>
             <class name="tests.ProductDetailsTest"/>
         </classes>
     </test>
