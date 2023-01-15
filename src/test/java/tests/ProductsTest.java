@@ -14,13 +14,15 @@ public class ProductsTest extends Basetest {
     @Test(dataProvider = "productTestData", description = "products test", groups = "regression")
     @Description(value = "Тест проверяет работоспособность перехода на страницу каждого из товаров")
     public void productsTest(String testItemName, String expectedItemPrice, String expectedItemDescription) {
-        loginPage.setUsername("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
+        boolean isPageOpened = loginPage.setUsername("standard_user").
+                setPassword("secret_sauce").
+                clickLoginButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Products page is not opened");
         Assert.assertEquals(productsPage.getItemPrice(testItemName), expectedItemPrice);
         Assert.assertEquals(productsPage.getItemDescription(testItemName), expectedItemDescription);
         Assert.assertEquals(productsPage.getItemName(testItemName), testItemName);
-        productsPage.openItem(testItemName);
+        isPageOpened = productsPage.openItem(testItemName).isPageOpened();
+        Assert.assertTrue(isPageOpened,"Product details page is not opened");
         Assert.assertTrue(productsPage.backToProductsPresent());
     }
 
@@ -45,9 +47,10 @@ public class ProductsTest extends Basetest {
     @Test(dataProvider = "sorting", retryAnalyzer = Retry.class, description = "sorting test", groups = {"regression"})
     @Description(value = "Тест проверяет правильность сортировки товаров")
     public void sortingTest(String sortByValue, List<String> itemNames) {
-        loginPage.setUsername("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
+        boolean isPageOpened = loginPage.setUsername("standard_user").
+                setPassword("secret_sauce").
+                clickLoginButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Products page is not opened");
         productsPage.selectSortingOption(sortByValue);
         Assert.assertEquals(productsPage.getProductNames(), itemNames);
 
