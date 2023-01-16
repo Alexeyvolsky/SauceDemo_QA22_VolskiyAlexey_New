@@ -11,11 +11,12 @@ public class RemoveButtonTest extends Basetest {
     @Test(description = "removeButtonTest", groups = "regression")
     @Description(value = "Тест проверяет работоспособность кнопки удаления товара из корзины")
     public void removeButtonTest() {
-        loginPage.setUsername("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
-        productsPage.clickAddToCartButton(itemName);
-        productsPage.clickShoppingCartButton();
+        boolean isPageOpened = loginPage.setUsername("standard_user").
+                setPassword("secret_sauce").
+                clickLoginButton().isPageOpened();
+        Assert.assertTrue(isPageOpened, "Products page is not opened");
+        isPageOpened = productsPage.clickAddToCartButton(itemName).clickShoppingCartButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Cart page is not opened");
         cartPage.removeButtonClick(itemName.replaceAll(" ", "-").toLowerCase());
         Assert.assertFalse(cartPage.isItemDescriptionDisplayed(itemName));
     }

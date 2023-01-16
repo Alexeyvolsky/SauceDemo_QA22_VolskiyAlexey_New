@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -12,18 +14,29 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class ProductsPage extends BasePage {
-    private final static By SHOPPING_CART_BUTTON = By.cssSelector(".shopping_cart_link");
-    private final static String ITEM_CONTAINER_LOCATOR = "//div[@class='inventory_item_name' and text()='%s']/ancestor::div[@class='inventory_item']";
+    @FindBy(css = ".shopping_cart_link")
+    private WebElement SHOPPING_CART_BUTTON;
+    @FindBy(xpath = ".//*[@class='btn btn_secondary back btn_large inventory_details_back_button']")
+    private WebElement BACK_TO_PRODUCTS;
+    @FindBy(css = "#react-burger-menu-btn")
+    private WebElement menu;
+    @FindBy(css = "#logout_sidebar_link")
+    private WebElement logout;
     private final static By ADD_TO_CART_BUTTON = By.xpath(".//button[text()='Add to cart']");
     private final static By ITEM_PRICE = By.xpath(".//*[@class='inventory_item_price']");
     private final static By ITEM_DESCRIPTION = By.xpath(".//*[@class='inventory_item_desc']");
     private final static By ITEM_NAME = By.xpath(".//*[@class='inventory_item_name']");
-    private final static By BACK_TO_PRODUCTS = By.xpath(".//*[@class='btn btn_secondary back btn_large inventory_details_back_button']");
-    private By menu = By.cssSelector("#react-burger-menu-btn");
-    private By logout = By.cssSelector("#logout_sidebar_link");
+    private final static String ITEM_CONTAINER_LOCATOR = "//div[@class='inventory_item_name' and text()='%s']/ancestor::div[@class='inventory_item']";
+
+
+    @Override
+    public boolean isPageOpened() {
+        return menu.isDisplayed();
+    }
 
     public ProductsPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver,this);
     }
 
     private List<WebElement> getActualNamesElements() {
@@ -47,32 +60,24 @@ public class ProductsPage extends BasePage {
 
     @Step("Checking presence on the product page")
     public boolean isShoppingCartButtonPresent() {
-        try {
-            driver.findElement(SHOPPING_CART_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+        return SHOPPING_CART_BUTTON.isDisplayed();
     }
 
     @Step("Checking presence on the product details page")
     public boolean backToProductsPresent() {
-        try {
-            driver.findElement(BACK_TO_PRODUCTS);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+        return BACK_TO_PRODUCTS.isDisplayed();
     }
 
     @Step("Go to shopping cart")
-    public void clickShoppingCartButton() {
-        driver.findElement(SHOPPING_CART_BUTTON).click();
+    public ProductsPage clickShoppingCartButton() {
+        SHOPPING_CART_BUTTON.click();
+        return this;
     }
 
     @Step("Add item to cart")
-    public void clickAddToCartButton(String itemName) {
+    public ProductsPage clickAddToCartButton(String itemName) {
         driver.findElement(getItemContainerByName(itemName)).findElement(ADD_TO_CART_BUTTON).click();
+        return this;
     }
 
     @Step("Get item name")
@@ -91,18 +96,21 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Open item")
-    public void openItem(String itemName) {
+    public ProductDetailsPage openItem(String itemName) {
         driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_NAME).click();
+        return new ProductDetailsPage(driver);
     }
 
     @Step("Open menu")
-    public void clickMenuButton() {
-        driver.findElement(menu).click();
+    public ProductsPage clickMenuButton() {
+        menu.click();
+        return this;
     }
 
     @Step("Logout")
-    public void clickLogout() {
-        driver.findElement(logout).click();
+    public LoginPage clickLogout() {
+        logout.click();
+        return new LoginPage(driver);
     }
 
     private By getItemContainerByName(String itemName) {

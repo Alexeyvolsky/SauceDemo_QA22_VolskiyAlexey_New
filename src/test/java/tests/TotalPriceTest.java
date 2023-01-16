@@ -10,17 +10,21 @@ public class TotalPriceTest extends Basetest {
     @Description(value = "Тест проверяет правильность подсчета итоговой стоимости")
     public void totalPriceTest() {
         double expectedItemTotal = 43.18;
-        loginPage.setUsername("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
-        productsPage.clickAddToCartButton("Sauce Labs Backpack");
-        productsPage.clickAddToCartButton("Sauce Labs Bike Light");
-        productsPage.clickShoppingCartButton();
-        cartPage.clickCheckoutButton();
-        checkoutPage.setFirstNameInput("Alexey");
-        checkoutPage.setLastNameInput("Volskiy");
-        checkoutPage.setPostalCodeInput("77887");
-        checkoutPage.clickContinueButton();
+        boolean isPageOpened = loginPage.setUsername("standard_user").
+                setPassword("secret_sauce").
+                clickLoginButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Products page is not opened");
+        isPageOpened = productsPage.clickAddToCartButton("Sauce Labs Backpack").
+                clickAddToCartButton("Sauce Labs Bike Light").
+                clickShoppingCartButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Cart page is not opened");
+        isPageOpened = cartPage.clickCheckoutButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Checkout page is not opened");
+        isPageOpened = checkoutPage.setFirstNameInput("Alexey").
+                setLastNameInput("Volskiy").
+                setPostalCodeInput("77887").
+                clickContinueButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Checkout overview page is not opened");
         Assert.assertEquals(checkoutOverwiewPage.getActualItemTotal(), expectedItemTotal);
     }
 }

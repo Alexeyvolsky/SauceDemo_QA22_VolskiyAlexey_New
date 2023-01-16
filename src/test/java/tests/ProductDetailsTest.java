@@ -12,10 +12,12 @@ public class ProductDetailsTest extends Basetest {
         String expectedDetailsName = "Sauce Labs Backpack";
         String expectedDetailsPrice = "$29.99";
         String expectedDetailsDescription = "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";
-        loginPage.setUsername("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
-        productsPage.openItem(expectedDetailsName);
+        boolean isPageOpened = loginPage.setUsername("standard_user").
+                setPassword("secret_sauce").
+                clickLoginButton().isPageOpened();
+        Assert.assertTrue(isPageOpened,"Products page is not opened");
+        isPageOpened = productsPage.openItem(expectedDetailsName).isPageOpened();
+        Assert.assertTrue(isPageOpened,"Product details page is not opened");
         Assert.assertEquals(productDetailsPage.getDetailsDescription(), expectedDetailsDescription);
         Assert.assertEquals(productDetailsPage.getDetailsName(), expectedDetailsName);
         Assert.assertEquals(productDetailsPage.getDetailsPrice(), expectedDetailsPrice);

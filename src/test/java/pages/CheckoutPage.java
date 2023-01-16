@@ -3,48 +3,61 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.NoSuchElementException;
 
 public class CheckoutPage extends BasePage {
 
-    private final static By FIRST_NAME_INPUT = By.cssSelector("#first-name");
-    private final static By LAST_NAME_INPUT = By.cssSelector("#last-name");
-    private final static By POSTAL_CODE_INPUT = By.cssSelector("#postal-code");
-    private By continueButton = By.cssSelector("#continue");
-    private By errorMessage = By.xpath("//*[@class='error-button']");
+    @FindBy(css = "#first-name")
+    private WebElement FIRST_NAME_INPUT;
+    @FindBy(css = "#last-name")
+    private WebElement LAST_NAME_INPUT;
+    @FindBy(css = "#postal-code")
+    private WebElement POSTAL_CODE_INPUT;
+    @FindBy(css = "#continue")
+    private WebElement continueButton;
+    @FindBy (xpath = "//*[@class='error-button']")
+    private WebElement errorMessage;
+
+    @Override
+    public boolean isPageOpened() {
+        return continueButton.isDisplayed();
+    }
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver,this);
     }
 
     @Step("Entering a First Name")
-    public void setFirstNameInput(String Firstname) {
-        driver.findElement(FIRST_NAME_INPUT).sendKeys(Firstname);
+    public CheckoutPage setFirstNameInput(String Firstname) {
+        FIRST_NAME_INPUT.sendKeys(Firstname);
+        return this;
     }
 
     @Step("Entering a Last Name")
-    public void setLastNameInput(String Lastname) {
-        driver.findElement(LAST_NAME_INPUT).sendKeys(Lastname);
+    public CheckoutPage setLastNameInput(String Lastname) {
+        LAST_NAME_INPUT.sendKeys(Lastname);
+        return this;
     }
 
     @Step("Entering a code")
-    public void setPostalCodeInput(String Postalcode) {
-        driver.findElement(POSTAL_CODE_INPUT).sendKeys(Postalcode);
+    public CheckoutPage setPostalCodeInput(String Postalcode) {
+        POSTAL_CODE_INPUT.sendKeys(Postalcode);
+        return this;
     }
 
     @Step("Go to overview page")
-    public void clickContinueButton() {
-        driver.findElement(continueButton).click();
+    public CheckoutOverwiewPage clickContinueButton() {
+        continueButton.click();
+        return new CheckoutOverwiewPage(driver);
     }
 
     @Step("Checking presence on the overview page")
     public boolean isErrorMessagePresent() {
-        try {
-            driver.findElement(errorMessage);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+        return errorMessage.isDisplayed();
     }
 }
