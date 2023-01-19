@@ -29,16 +29,19 @@ public class ProductDetailsPage extends BasePage {
     }
     @Step("Get details name")
     public String getDetailsName() {
+        logger.info("Getting detailsName");
         return DETAILS_NAME.getText();
     }
 
     @Step("Get details price")
     public String getDetailsPrice() {
+        logger.info("Getting detailsPrice");
         return DETAILS_PRICE.getText();
     }
 
     @Step("Get details description")
     public String getDetailsDescription() {
+        logger.info("Getting detailsDescription");
         return DETAILS_DESCRIPTION.getText();
     }
 
