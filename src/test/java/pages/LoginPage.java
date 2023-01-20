@@ -31,18 +31,21 @@ public class LoginPage extends BasePage {
 
     @Step("Login")
     public ProductsPage clickLoginButton() {
+        logger.info("Clicking login button");
         loginButton.click();
         return new ProductsPage(driver);
     }
 
     @Step("Entering a username")
     public LoginPage setUsername(String Username) {
+        logger.debug("Setting username value {}",Username);
         usernameInput.sendKeys(Username);
         return this;
     }
 
     @Step("Entering a password")
     public LoginPage setPassword(String password) {
+        logger.debug("Setting password value {}",password);
         passwordInput.sendKeys(password);
         return this;
     }

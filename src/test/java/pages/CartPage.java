@@ -33,12 +33,14 @@ public class CartPage extends BasePage {
 
     @Step("Go to cart")
     public CheckoutPage clickCheckoutButton() {
+        logger.info("Clicking checkout button");
         checkoutButton.click();
         return new CheckoutPage(driver);
     }
 
     @Step("Removing item from the cart")
     public void removeButtonClick(String itemName) {
+        logger.info("Clicking remove button");
         driver.findElement(getRemoveButtonByItemName(itemName)).click();
     }
 

@@ -33,22 +33,26 @@ public class CheckoutOverwiewPage extends BasePage {
 
     @Step("Go to finish page")
     public CheckoutCompletePage clickFinishButton() {
+        logger.info("Clicking finish button");
         finishButton.click();
         return new CheckoutCompletePage(driver);
     }
 
     @Step("Get details name")
     public String getDetailsName() {
+        logger.info("Getting itemName");
         return DETAILS_NAME.getText();
     }
 
     @Step("Get details price")
     public String getDetailsPrice() {
+        logger.info("Getting detailsPrice");
         return DETAILS_PRICE.getText();
     }
 
     @Step("Get details description")
     public String getDetailsDescription() {
+        logger.info("Getting detailsDescription");
         return DETAILS_DESCRIPTION.getText();
     }
 

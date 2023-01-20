@@ -70,45 +70,53 @@ public class ProductsPage extends BasePage {
 
     @Step("Go to shopping cart")
     public ProductsPage clickShoppingCartButton() {
+        logger.info("Clicking shoppingCart button");
         SHOPPING_CART_BUTTON.click();
         return this;
     }
 
     @Step("Add item to cart")
     public ProductsPage clickAddToCartButton(String itemName) {
+        logger.info("Clicking addToCart button");
         driver.findElement(getItemContainerByName(itemName)).findElement(ADD_TO_CART_BUTTON).click();
         return this;
     }
 
     @Step("Get item name")
     public String getItemName(String itemName) {
+        logger.info("Getting itemName");
         return driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_NAME).getText();
     }
 
     @Step("Get item price")
     public String getItemPrice(String itemName) {
+        logger.info("Getting itemPrice");
         return driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_PRICE).getText();
     }
 
     @Step("Get item description")
     public String getItemDescription(String itemName) {
+        logger.info("Getting itemDescription");
         return driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_DESCRIPTION).getText();
     }
 
     @Step("Open item")
     public ProductDetailsPage openItem(String itemName) {
+        logger.info("Clicking product button");
         driver.findElement(getItemContainerByName(itemName)).findElement(ITEM_NAME).click();
         return new ProductDetailsPage(driver);
     }
 
     @Step("Open menu")
     public ProductsPage clickMenuButton() {
+        logger.info("Clicking menu button");
         menu.click();
         return this;
     }
 
     @Step("Logout")
     public LoginPage clickLogout() {
+        logger.info("Clicking logout button");
         logout.click();
         return new LoginPage(driver);
     }

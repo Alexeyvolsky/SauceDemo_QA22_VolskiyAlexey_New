@@ -34,24 +34,28 @@ public class CheckoutPage extends BasePage {
 
     @Step("Entering a First Name")
     public CheckoutPage setFirstNameInput(String Firstname) {
+        logger.debug("Setting firstname value {}",Firstname);
         FIRST_NAME_INPUT.sendKeys(Firstname);
         return this;
     }
 
     @Step("Entering a Last Name")
     public CheckoutPage setLastNameInput(String Lastname) {
+        logger.debug("Setting lastname value {}",Lastname);
         LAST_NAME_INPUT.sendKeys(Lastname);
         return this;
     }
 
     @Step("Entering a code")
     public CheckoutPage setPostalCodeInput(String Postalcode) {
+        logger.debug("Setting postalCode value {}",Postalcode);
         POSTAL_CODE_INPUT.sendKeys(Postalcode);
         return this;
     }
 
     @Step("Go to overview page")
     public CheckoutOverwiewPage clickContinueButton() {
+        logger.info("Clicking continue button");
         continueButton.click();
         return new CheckoutOverwiewPage(driver);
     }
