@@ -20,7 +20,7 @@
         </classes>
     </test>
     <test name="Smoke tests on Edge">
-        <parameter name="browser" value="edge"></parameter>
+        <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="tests.CheckoutTest">
                 <methods>
