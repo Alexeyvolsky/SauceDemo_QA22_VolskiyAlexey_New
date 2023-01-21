@@ -19,7 +19,7 @@
             <class name="tests.ProductDetailsTest"/>
         </classes>
     </test>
-    <test name="Smoke tests on Edge">
+    <test name="Smoke tests on Firexfox">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="tests.CheckoutTest">

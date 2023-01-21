@@ -18,7 +18,7 @@
             <class name="tests.ProductsTest"/>
         </classes>
     </test>
-    <test name="Regression tests on Edge">
+    <test name="Regression tests on Firefox">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="tests.CheckoutTest">
