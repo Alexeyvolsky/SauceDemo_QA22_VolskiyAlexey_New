@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('0 21 * * MON-FRI')
+        cron('30 21 24 1 *')
+    }
+
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M3"
