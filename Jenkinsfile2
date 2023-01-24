@@ -6,11 +6,15 @@ pipeline {
         maven "M3"
     }
 
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
+
     stages {
         stage('Run Selenium Tests') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/Alexeyvolsky/SauceDemo_QA22_VolskiyAlexey_New'
+                git branch: "${params.BRANCH}", url: 'https://github.com/Alexeyvolsky/SauceDemo_QA22_VolskiyAlexey_New'
 
                 // Run Maven on an agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean test"
