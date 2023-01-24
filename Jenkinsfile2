@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     triggers {
-        cron('0 21 * * MON-FRI')
         cron('30 21 24 1 *')
     }
 
