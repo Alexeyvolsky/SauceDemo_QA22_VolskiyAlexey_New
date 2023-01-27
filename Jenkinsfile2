@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
         parameterizedCron('''
-        8 19 * * * %BROWSER=Edge;SUITE_NAME=regressionTest.xml;HEADLESS=true
+        13 19 * * * %BROWSER=Edge;SUITE_NAME=regressionTest.xml;HEADLESS=true
     ''')
     }
 
