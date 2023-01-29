@@ -8,7 +8,9 @@ pipeline {
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
      string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
-     choice(name: 'BROWSER', choices: ['сhrome', 'firefox',], description: 'Select a browser')
+     choice(name: 'BROWSER', choices: ['сhrome', 'firefox',], description: 'Select a browser', defaultValue: 'chrome')
+     booleanParam (defaultValue: false, description: 'HeadLess', name: 'HEADLESS')
+         }
 
 
     }
