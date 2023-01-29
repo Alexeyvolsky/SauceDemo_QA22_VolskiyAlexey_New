@@ -12,7 +12,7 @@ pipeline {
         stage('Run Selenium Tests') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: "%{params.BRANCH}", url: 'https://github.com/Alexeyvolsky/SauceDemo_QA22_VolskiyAlexey_New'
+                git branch: "${params.BRANCH}", url: 'https://github.com/Alexeyvolsky/SauceDemo_QA22_VolskiyAlexey_New'
 
                 // Run Maven on a Unix agent.
                 bat "mvn clean test"
