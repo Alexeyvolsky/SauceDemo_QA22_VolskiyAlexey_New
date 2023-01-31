@@ -19,22 +19,4 @@
             <class name="tests.ProductDetailsTest"/>
         </classes>
     </test>
-    <test name="Smoke tests on Firexfox">
-        <parameter name="browser" value="firefox"></parameter>
-        <classes>
-            <class name="tests.CheckoutTest">
-                <methods>
-                    <include name="pozitiveCheckoutTest"/>
-                </methods>
-            </class>
-            <class name="tests.LoginTests">
-                <methods>
-                    <include name="pozitiveLoginTest"/>
-                    <include name="logoutTest"/>
-                </methods>
-            </class>
-            <class name="tests.TotalPriceTest"/>
-            <class name="tests.ProductDetailsTest"/>
-        </classes>
-    </test>
-</suite>
+       </suite>
