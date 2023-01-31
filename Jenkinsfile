@@ -19,8 +19,6 @@ pipeline {
      booleanParam (defaultValue: false, description: 'HeadLess', name: 'HEADLESS')
          }
 
-
-    }
     stages {
         stage('Run Selenium Tests') {
             steps {
