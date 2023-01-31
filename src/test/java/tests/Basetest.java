@@ -26,7 +26,7 @@ public abstract class Basetest {
     @Parameters({"browser"})
     @BeforeClass
     public void setUp(@Optional("Chrome") ITestContext testContext) throws Exception {
-        String browserName = System.getProperty("browser", "Chrome");
+        String browserName = System.getProperty("BROWSER", "Chrome");
         if (browserName.equals("Chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
