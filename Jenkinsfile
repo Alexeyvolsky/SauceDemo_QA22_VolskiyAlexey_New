@@ -15,7 +15,7 @@ pipeline {
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
      string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
-     choice(name: 'BROWSER', choices: ['сhrome', 'firefox',], description: 'Select a browser')
+     choice(name: 'BROWSER', choices: ['Chrome', 'Firefox',], description: 'Select a browser')
      booleanParam (defaultValue: false, description: 'HeadLess', name: 'HEADLESS')
          }
 
@@ -28,7 +28,7 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/Alexeyvolsky/SauceDemo_QA22_VolskiyAlexey_New'
 
                 // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlFile=${params.SUITE_NAME} -Dbrowser=${params.BROWSER} -Dheadless=%{params.HEADLESS}% clean test"
 
 
                 // To run Maven on a Windows agent, use
