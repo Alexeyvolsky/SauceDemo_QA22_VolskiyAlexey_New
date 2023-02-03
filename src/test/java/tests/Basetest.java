@@ -3,6 +3,7 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
@@ -26,7 +27,12 @@ public abstract class Basetest {
     @BeforeClass
     public void setUp(ITestContext testContext) throws Exception {
         String browserName = System.getProperty("browser", "Chrome");
+        String headless = System.getProperty("headless", "false");
         if (browserName.equals("Chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            if(headless.equals("true")){
+                options.addArguments("--headless");
+            }
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browserName.equals("Firefox")) {
